@@ -30,26 +30,26 @@ open the docker, and keep it running.
 
 # write content
 ```
-apiVersion: v1
-kind: Pod
+apiVersion: v1  # 指定 Kubernetes API 版本
+kind: Pod  # 創建一個 Pod
 metadata:
-  name: nginx-secure
+  name: nginx-secure  # Pod 的名稱
 spec:
   securityContext:
-    runAsNonRoot: true
+    runAsNonRoot: true  # 強制使用非 root 身份執行
     runAsUser: 101  # 指定以 UID 101 執行（Nginx 非 root 用戶）
   containers:
   - name: nginx
     image: nginx
     securityContext:
-      allowPrivilegeEscalation: false
+      allowPrivilegeEscalation: false  # 禁止權限提升
       capabilities:
         drop:
-          - ALL
-      readOnlyRootFilesystem: true
+          - ALL  # 移除所有權限
+      readOnlyRootFilesystem: true  # 設定唯讀檔案系統
     ports:
-      - containerPort: 80
-    volumeMounts:
+      - containerPort: 80  # 開放 80 端口
+    volumeMounts:  # 提供可寫入的快取空間
       - mountPath: /var/cache/nginx
         name: cache-volume
       - mountPath: /var/run
