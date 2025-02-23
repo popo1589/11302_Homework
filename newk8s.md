@@ -29,7 +29,8 @@ open the docker, and keep it running.
 `nano nginx-secure.yaml`
 
 # write content
-```apiVersion: v1
+```
+apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-secure
@@ -62,14 +63,27 @@ spec:
 
 # Deployment Nginx
 #kubectl delete pod nginx-secure
+
+### Create Nginx Container with safety rules
 `kubectl apply -f nginx-secure.yaml`
+
+### Test pods
 `kubectl get pods`
 
-# Test
+# Test the Container's safty
+### access to container
 `kubectl exec -it nginx-secure -- /bin/sh`
+
+### check current user
 `id`
+
+### check whether can create new file
 `touch /root/test`
+
+### try to get root
 `sudo su`
+
+### exit to container
 `exit`
 
 
