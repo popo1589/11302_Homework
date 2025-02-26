@@ -29,7 +29,7 @@ open the docker, and keep it running.
 `nano nginx-secure.yaml`
 
 # write content
-```
+```yaml
 apiVersion: v1  # 指定 Kubernetes API 版本
 kind: Pod  # 創建一個 Pod
 metadata:
