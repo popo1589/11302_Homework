@@ -12,7 +12,7 @@
   * 攻擊方式：利用Samba漏洞取得遠端shell權限（CVE-2007-2447）
 
 # [Procedure]步驟紀錄
-  * [連結名稱]([https://google.com](https://github.com/popo1589/11302_Homework/blob/main/Metaspoilt%20with%20Docker.md) "Metaspoilt with Docker")
+  * [Metaspoilt with Docker](https://github.com/popo1589/11302_Homework/blob/main/Metaspoilt%20with%20Docker.md)
 
 # [Suggestion]結論建議
   * 透過Docker快速部署Metasploit環境，並利用Samba漏洞取得遠端控制權限。滲透測試的基本流程，包括：偵查、漏洞分析與攻擊。
