@@ -25,10 +25,15 @@
     - -p 80:80：開放 Web 服務（可能存在漏洞）
 
 ### Check Metasploit2 in Docker status
-`docker ps`  # check docker status
-`docker rm -f vulnerable`  # if docker exist, but didn't running then delete it.
-`docker run -d --name vulnerable -p 445:445 -p 21:21 -p 22:22 -p 80:80 tleemcjr/metasploitable2 bash -c "/bin/services.sh && tail -f /dev/null"` # rerun vul docker
-`docker start vulnerable`  # rerun
+- Check docker status
+    - `docker ps`
+
+- Debug
+- If docker exist, but didn't running then delete it.
+    - `docker rm -f vulnerable`
+    - `docker run -d --name vulnerable -p 445:445 -p 21:21 -p 22:22 -p 80:80 tleemcjr/metasploitable2 bash -c "/bin/services.sh && tail -f /dev/null"` # rerun vul docker
+- Rerun
+    - `docker start vulnerable`
 
 # 3. Run attacker
 ### Run Metasploit in Docker
