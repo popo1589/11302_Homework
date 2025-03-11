@@ -20,9 +20,9 @@
 
 - Explanation of vulnerable
     - -p 445:445：開放 SMB（檔案共享漏洞）
-    - -p 21:21：開放 FTP（容易被暴力破解）
-    - -p 22:22：開放 SSH（可能存在弱密碼）
-    - -p 80:80：開放 Web 服務（可能存在漏洞）
+    - -p 21:21：  開放 FTP（容易被暴力破解）
+    - -p 22:22：  開放 SSH（可能存在弱密碼）
+    - -p 80:80：  開放 Web 服務（可能存在漏洞）
 
 ### Check Metasploit2 in Docker status
 - Check docker status
