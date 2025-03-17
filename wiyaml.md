@@ -21,6 +21,9 @@
 
 `kubectl cluster-info`
 
+## Deployment YAML file
+`kubectl apply -f <your_yaml_file.yaml>`
+
 ## pull imagine
 `docker pull vulfocus/libssh-cve_2018_10933`
 
