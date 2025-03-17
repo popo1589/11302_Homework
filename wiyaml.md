@@ -54,4 +54,27 @@ Host localhost
 
 
 
+## Debug
+✅ 2️⃣ 確保 Kali 可以連線到 macOS
+由於 Kali 是 VM（虛擬機），它的網路模式可能影響到連線能力。
+
+🔹 方法 1：如果使用「橋接模式」（Bridged Adapter，推薦）
+在 VirtualBox 或 VMware 選擇 Kali VM
+進入「設定」>「網路」
+將「介面 1」的「連線方式」改為 橋接介面（Bridged Adapter）
+啟動 Kali，查看 IP 地址：
+ip a
+你應該會看到一個與 macOS 相同區網的 IP（例如 192.168.1.x）。
+從 Kali 連線到 macOS：
+ssh -p 10022 root@<macOS的IP>
+ifconfig | grep "inet "
+找到 macOS 在區網內的 IP，例如 192.168.1.100，然後在 Kali 上連線：
+ssh -p 10022 root@192.168.1.100
+
+確保 Kubernetes 內的 SSH 服務正常運行
+
+
+
+
+
 
