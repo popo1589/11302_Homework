@@ -32,7 +32,7 @@
 ## Check kubernetes objects and SSH service
 `kubectl get all -n namespace-double-ssh`
 
-kubectl port-forward service/service-internet 2222:22 -n namespace-double-ssh --address 0.0.0.0
+kubectl port-forward service/service-internet 10022:22 -n namespace-double-ssh --address 0.0.0.0
 
 `minikube service service-internet -n namespace-double-ssh --url`
 
