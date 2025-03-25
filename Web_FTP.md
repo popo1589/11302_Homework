@@ -6,9 +6,26 @@ containers:
     image: cyberacademylabs/metasploitable2
     imagePullPolicy: Never  # 不從網路拉取映像檔
 ```
+## Test k8s SSH service
+kubectl get svc -n namespace-double-nodes
 
 
 ## Metaspoilt 2
+### access into Metaspoilt 2 container
 docker exec -it metasploitable2 bash
 ip a
 ifconfig
+
+## create file
+```
+echo '#!/bin/bash
+logger -t system_status "$(date '+%Y-%m-%d %H:%M:%S') System Check OK" &&
+echo "Log written successfully." || echo "Log write failed."' > /syslogger.sh
+```
+
+## Kali
+ssh msfadmin@172.xx.x.x
+
+
+
+
