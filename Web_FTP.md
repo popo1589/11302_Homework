@@ -6,6 +6,13 @@ containers:
     image: cyberacademylabs/metasploitable2
     imagePullPolicy: Never  # 不從網路拉取映像檔
 ```
+
+## Check all namespaces ip
+kubectl get namespaces
+
+kubectl get pods --all-namespaces -o wide
+
+
 ## Test k8s SSH service
 kubectl get svc -n namespace-double-nodes
 
