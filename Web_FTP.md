@@ -33,6 +33,12 @@ echo "Log written successfully." || echo "Log write failed."' > /syslogger.sh
 ## Kali
 ssh msfadmin@172.xx.x.x
 
+## Scan host live
+telnet 192.0.0.1 80
+nc -vz 192.0.0.1 80
+nmap -Pn -p 80 192.0.0.1
+
+
 
 
 
