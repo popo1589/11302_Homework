@@ -32,14 +32,14 @@
 
 ### 1. Docker 部署與實際運行
 
-本研究使用 Cowrie 作為 Honeypot 示範工具，透過 Docker 快速部署：
+- 本研究使用 Cowrie 作為 Honeypot 示範工具，透過 Docker 快速部署：
 
 ```bash
 docker pull cowrie/cowrie
 docker run -d --name honeypot -p 2222:2222 cowrie/cowrie
 ```
 
-上述指令將啟動 Cowrie 蜜罐容器，並於主機 2222 埠提供模擬的 SSH 服務。
+- 上述指令將啟動 Cowrie 蜜罐容器，並於主機 2222 埠提供模擬的 SSH 服務。
 
 ### 2. 操作與攻擊模擬
 
