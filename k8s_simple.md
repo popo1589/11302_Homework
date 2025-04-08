@@ -16,7 +16,7 @@
 2. **查詢 Service 狀態：**  
    - 在本機瀏覽器中訪問：
      ```
-     kubectl get svc -n namespace-double-nodes
+     kubectl get all/svc -n namespace-double-nodes
      ```
 
 3. **端口轉發：**  
