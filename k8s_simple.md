@@ -13,13 +13,19 @@
      kubectl apply -f k8s.yaml
      ```
 
-2. **端口轉發：**  
+2. **查詢 Service 狀態：**  
+   - 在本機瀏覽器中訪問：
+     ```
+     kubectl get svc -n namespace-double-nodes
+     ```
+
+3. **端口轉發：**  
    - 將服務的 80 號端口轉發到本機 10088 端口：
      ```bash
      kubectl port-forward service/service-internet 10088:80 -n namespace-double-nodes --address 0.0.0.0
      ```
      
-3. **確認連線：**  
+4. **確認連線：**  
    - 在本機瀏覽器中訪問：
      ```
      http://127.0.0.1:10088
