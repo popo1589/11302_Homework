@@ -22,6 +22,85 @@
    - 背景執行 `tcpdump -i lo port 8000 -w generated_flag.pcap`  
    - 用 `curl -F "file=@flag.txt" http://127.0.0.1:8000/upload` 上傳檔案  
    - 停止 `tcpdump`，完成 `generated_flag.pcap` 檔案製作  
+2. **腳本內容**
+   - 模擬封包提取過程與輸出pcap檔。
+```python
+import os
+import subprocess
+import time
+import threading
+from flask import Flask, request
+
+# === Step 1: 建立 Flask 伺服器 ===
+# 建立 Flask 應用，用來模擬 HTTP 上傳
+app = Flask(__name__)
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    # 從請求中取得上傳的檔案
+    f = request.files['file']
+    content = f.read()  # 讀取檔案內容
+    print("[*] 接收到檔案內容：", content)  # 顯示在主控台（可驗證內容是否含有 flag）
+    return "File received!"  # 回傳簡單訊息表示成功
+
+# 定義一個函式來啟動 Flask（用執行緒背景執行）
+def run_flask():
+    app.run(host='127.0.0.1', port=8000)
+
+# === Step 2: 產生 flag 檔案 ===
+# 設定 flag 內容
+flag = "picoCTF{auto_generated_flag_123}"
+
+# 將 flag 寫入文字檔 flag.txt
+with open("flag.txt", "w") as f:
+    f.write(flag)
+
+print("[*] 已建立 flag.txt")  # 顯示成功訊息
+
+# === Step 3: 啟動 Flask 伺服器於背景 ===
+print("[*] 啟動 Flask HTTP 伺服器...")
+
+# 建立並啟動背景執行的 Flask 伺服器執行緒
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.daemon = True  # 設定為背景執行
+flask_thread.start()
+
+time.sleep(1)  # 稍等伺服器啟動完成
+
+# === Step 4: 開始擷取封包 ===
+pcap_file = "generated_flag.pcap"  # 封包檔案名稱
+print(f"[*] 開始封包擷取到 {pcap_file} ...")
+
+# 使用 subprocess 執行 tcpdump，擷取指定介面與 port 的封包
+tcpdump_proc = subprocess.Popen(
+    ["sudo", "tcpdump", "-i", "lo", "port", "8000", "-w", pcap_file],  # 擷取本機介面 lo 上 8000 埠的封包
+    stdout=subprocess.DEVNULL,   # 不顯示輸出
+    stderr=subprocess.DEVNULL
+)
+
+time.sleep(1)  # 等待 tcpdump 確實啟動
+
+# === Step 5: 使用 curl 上傳含 flag 的檔案 ===
+print("[*] 使用 curl 上傳 flag 檔案中...")
+
+# 呼叫 curl 發送 HTTP POST 請求，上傳剛剛的 flag.txt
+subprocess.run([
+    "curl", "-F", "file=@flag.txt", "http://127.0.0.1:8000/upload"
+])
+
+# === Step 6: 結束擷取 ===
+time.sleep(1)  # 等待封包傳輸完成
+tcpdump_proc.terminate()  # 停止封包擷取程式
+
+# 顯示結果訊息
+print("[*] 封包擷取已完成 ✅")
+print(f"[*] 已輸出封包檔：{pcap_file}")
+```
+
+```bash
+sudo python3 generate_flag_pcap.py
+
+```
 
 2. **檢查與驗證**  
    - 確認 `generated_flag.pcap` 存在  
