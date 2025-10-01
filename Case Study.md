@@ -8,7 +8,7 @@
 ## 過程（Process）
 1. 入侵與資料竊取：Hunter Ransom Group駭客組織利用「crazy hunters」成功入侵馬偕醫院的資訊系統，發動攻擊。
 2. 攻擊方式：
-   - 透過入侵Active Directory（AD）主機，部署惡意程式，並利用BVOYD（Bring Your Own Vulnerable Driver）技術來規避安全偵測。
+   - 透過入侵Active Directory（AD）主機，部署惡意程式，並利用BYOVD（Bring Your Own Vulnerable Driver）技術來規避安全偵測。
    - BVOYD手法涉及攻擊者利用合法但存在漏洞的驅動程式，提升系統權限，進而繞過安全防護措施。
 5. 勒索要求：駭客在勒索信中表示，由於醫院人員作業疏失(受感染USB插入醫院設備)，以致成功入侵淡水和台北的伺服器，並要求支付贖金以處理遭加密檔案。
 6. 醫院回應：馬偕醫院對此事件表示震驚，並將全力配合相關單位進行調查，同時加強資訊安全措施，防止類似事件發生。
